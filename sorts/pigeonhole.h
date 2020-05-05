@@ -17,7 +17,9 @@ void pigeonhole(ForwardIt begin, ForwardIt end) {
         if (*i < min) min = *i;
     }
 
-    std::vector<ElementType> pigeonholes(max - min + 1, 0);
+    ElementType size = max - min; // sorry, but i'm not to crazy to apply this sort to arrays with value spread 0 - UINT32_MAX, average use of RAM is about 12Gb that is INSANE
+
+    std::vector<ElementType> pigeonholes(size + 1, 0);
     std::vector<ElementType> usedIndexes;
     std::map<ElementType, ElementType> repeatedElementsCount;
 

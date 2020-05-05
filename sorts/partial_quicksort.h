@@ -6,6 +6,7 @@
 #define SORT_BENCHMARK_PARTIAL_QUICKSORT_H
 
 #include <type_traits>
+#include <iostream>
 
 template <class ForwardIt, class T>
 ForwardIt partition (T pivot, ForwardIt begin, ForwardIt end) {
@@ -57,9 +58,13 @@ ForwardIt partition2 (ForwardIt begin, ForwardIt end) {
 template <class ForwardIt, class T>
 void partial_quicksort (ForwardIt begin, ForwardIt end, T maxToSort) {
     if (begin < end) {
-        ForwardIt pivot = partition2<ForwardIt> (begin, end);
 
-        partial_quicksort<ForwardIt, T> (begin, pivot - 1, maxToSort);
+        //ForwardIt pivot = partition2<ForwardIt> (begin, end);
+        ForwardIt pivot = partition(*(begin + (end - begin) / 2), begin, end);
+
+        //std::cout << "Recursion depth " << recursionDepth << " last index " << end - begin << " distance to pivot " << pivot - begin << " maxToSort " << maxToSort <<'\n';
+
+        partial_quicksort<ForwardIt, T> (begin, pivot, maxToSort);
 
         T distance = (pivot - begin);
         if (distance < maxToSort - 1) {

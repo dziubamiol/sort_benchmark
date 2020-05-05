@@ -30,12 +30,12 @@ void runBenchmark() {
                     unsigned int parsed;
                     for (unsigned int k = 0; k < 10000; k++) {
                         dataset >> parsed;
-                        //std::cout << typeid(parsed).name() << parsed << ' ';
+
                         test[k] = parsed;
                     }
 
                     for (int sortIndex = 0; sortIndex < 4; sortIndex++) {
-                        benchmark<unsigned int *, unsigned int>(sorts[sortIndex], test.begin(),test.begin() + arraySizes[i], 5, sortNames[sortIndex], false);
+                        benchmark<unsigned int *, unsigned int> (sorts[sortIndex], test.begin(),test.begin() + arraySizes[i], 5, sortNames[sortIndex], filename, false);
 
                         ready++;
                         double readyPercents = ready / (5.0 * 4.0 * 5.0 * 4.0);
